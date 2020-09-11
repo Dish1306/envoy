@@ -1,8 +1,8 @@
 on:
   push:
-    paths:
-    - 'source/common/**'
-  pull_request:
+    branches:
+      - master
+      - "rel_*"
 
 jobs:
   CodeQL-Build:
@@ -40,7 +40,7 @@ jobs:
     - name: Install deps
       shell: bash
       run: |
-       sudo apt-get update && sudo apt-get install libtool cmake automake autoconf make ninja-build curl unzip virtualenv openjdk-11-jdk build-essential libc++1
+       sudo apt-get update && sudo apt-get install libtool cmake automake autoconf make ninja-build curl unzip virtualenv openjdk-11-jdk crossbuild-essential-arm64 build-essential libc++1
        mkdir -p bin/clang10
        cd bin/clang10
        wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
@@ -51,7 +51,7 @@ jobs:
       run: |
        bazel/setup_clang.sh bin/clang10
        bazelisk shutdown
-       bazelisk build -c fastbuild --spawn_strategy=local --discard_analysis_cache --nouse_action_cache --config clang --config libc++ $BUILD_TARGETS
+       bazelisk build -c fastbuild --crosstool_top=@envoy_build_tools//toolchains/configs/linux/gcc/bazel_3.4.1/cc:toolchain --cpu=aarch64-cross --spawn_strategy=local --discard_analysis_cache --nouse_action_cache --config clang --config libc++ $BUILD_TARGETS
        echo -e "Built targets...\n$BUILD_TARGETS"
 
     - name: Clean Artifacts
