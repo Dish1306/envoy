@@ -79,13 +79,13 @@ DEPENDENCY_REPOSITORIES_SPEC = dict(
         use_category = ["build"],
     ),
     envoy_build_tools = dict(
-        project_name = "envoy-build-tools",
-        project_url = "https://github.com/envoyproxy/envoy-build-tools",
-        version = "2d13ad4157997715a4939bd218a89c81c26ff28e",
-        sha256 = "0dc8ce5eb645ae069ce710c1010975456f723ffd4fc788a03dacfcd0647b05b9",
-        strip_prefix = "envoy-build-tools-{version}",
+        project_name = "mrostecki/envoy-build-tools",
+        project_url = "https://github.com/mrostecki/envoy-build-tools",
+        version = "3324f56f51c0e91a72b353f1decae6a721f5a02d",
+        sha256 = "9c014ba5054455c270fc490c86e0213ca0b8cb98cfd888c78135ad0c0a69f36d",
+        strip_prefix =  "envoy-build-tools-{version}",
         # 2020-08-21
-        urls = ["https://github.com/envoyproxy/envoy-build-tools/archive/{version}.tar.gz"],
+        urls = ["https://github.com/mrostecki/envoy-build-tools/archive/3324f56f51c0e91a72b353f1decae6a721f5a02d.tar.gz"],
         use_category = ["build"],
     ),
     boringssl = dict(
