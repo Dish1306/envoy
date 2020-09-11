@@ -79,7 +79,7 @@ def envoy_cmake_external(
         copy_pdb = False,
         pdb_name = "",
         cmake_files_dir = "$BUILD_TMPDIR/CMakeFiles",
-        generate_crosstool_file = False,
+        generate_crosstool_file = True,
         **kwargs):
     cache_entries.update({"CMAKE_BUILD_TYPE": "Bazel"})
     cache_entries_debug = dict(cache_entries)
