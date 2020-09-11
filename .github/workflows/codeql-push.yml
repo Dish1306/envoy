@@ -41,16 +41,16 @@ jobs:
       shell: bash
       run: |
        sudo apt-get update && sudo apt-get install apt bazel-3.4.1 libtool cmake automake autoconf make ninja-build curl unzip virtualenv openjdk-11-jdk crossbuild-essential-arm64 build-essential libc++1
-       mkdir -p bin/clang10
-       cd bin/clang10
-       wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
-       tar -xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz --strip-components 1
-       export PATH=bin/clang10/bin:$PATH
+       #mkdir -p bin/clang10
+       #cd bin/clang10
+       #wget https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+       #tar -xf clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz --strip-components 1
+       #export PATH=bin/clang10/bin:$PATH
 
     - name: Build
       run: |
-       bazel/setup_clang.sh bin/clang10
-       bazelisk shutdown
+       #bazel/setup_clang.sh bin/clang10
+       #bazelisk shutdown
        bazel build --crosstool_top=@envoy_build_tools//toolchains/configs/linux/gcc/bazel_3.4.1/cc:toolchain --cpu=aarch64-cross //source/exe:envoy-static
        #echo -e "Built targets...\n$BUILD_TARGETS"
 
