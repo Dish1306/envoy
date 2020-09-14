@@ -49,7 +49,7 @@ jobs:
 
     - name: Build
       run: |
-       bazel/setup_clang.sh bin/clang10
+       #bazel/setup_clang.sh bin/clang10
        #bazelisk shutdown
        bazel --version
        bazel clean --expunge && bazel sync
