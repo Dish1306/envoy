@@ -167,12 +167,12 @@ if [[ "$CI_TARGET" == "bazel.release" ]]; then
   bazel_binary_build release
   exit 0
 elif [[ "$CI_TARGET" == "bazel.gcc.cross_aarch64" ]]; then
-  BAZEL_BUILD_OPTIONS+="--crosstool_top=@envoy_build_tools//toolchains/configs/linux/gcc/bazel_3.4.1/cc:toolchain"
-  BAZEL_BUILD_OPTIONS+="--cpu=aarch64-cross"
-  setup_gcc_toolchain
+  #BAZEL_BUILD_OPTIONS+="--crosstool_top=@envoy_build_tools//toolchains/configs/linux/gcc/bazel_3.4.1/cc:toolchain"
+  #BAZEL_BUILD_OPTIONS+="--cpu=aarch64-cross"
+  #setup_gcc_toolchain
 
   echo "bazel release aarch64 cross build with gcc..."
-  bazel build  --crosstool_top=@envoy_build_tools//toolchains/configs/linux/gcc/bazel_3.4.1/cc:toolchain --cpu=aarch64-cross //source/exe:envoy-static
+  bazel build --crosstool_top=@envoy_build_tools//toolchains/configs/linux/gcc/bazel_3.4.1/cc:toolchain --cpu=aarch64-cross //source/exe:envoy-static
   #bazel_binary_build release
   exit 0
 elif [[ "$CI_TARGET" == "bazel.release.server_only" ]]; then
