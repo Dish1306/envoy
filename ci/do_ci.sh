@@ -114,7 +114,10 @@ function bazel_binary_build() {
   # This is a workaround for https://github.com/bazelbuild/bazel/issues/11834
   [[ ! -z "${ENVOY_RBE}" ]] && rm -rf bazel-bin/"${ENVOY_BIN}"*
 
-  bazel build ${BAZEL_BUILD_OPTIONS} -c "${COMPILE_TYPE}" "${ENVOY_BUILD_TARGET}" ${CONFIG_ARGS}
+  echo "building"
+  
+  #bazel build ${BAZEL_BUILD_OPTIONS} -c "${COMPILE_TYPE}" "${ENVOY_BUILD_TARGET}" ${CONFIG_ARGS}
+  bazel build --crosstool_top=@envoy_build_tools//toolchains/configs/linux/gcc/bazel_3.4.1/cc:toolchain --cpu=aarch64-cross //source/exe:envoy-static
   collect_build_profile "${BINARY_TYPE}"_build
 
   # Copy the built envoy binary somewhere that we can access outside of the
